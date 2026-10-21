@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stella the Dog | Portfolio (3D)</title>
+  <style>
+    :root { --gold: #f5d77a; --ink: #07060a; --glass: rgba(255,255,255,.06); --line: rgba(245,215,122,.35); }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--ink); color: #f4efe2; font-family: "Helvetica Neue", Arial, sans-serif; overflow-x: hidden; }
+
+    /* ---------- Intro ---------- */
+    #intro {
+      position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 50% 40%, #2a1a06 0%, #000 70%);
+      transition: opacity .9s ease, visibility .9s;
+    }
+    #intro.hide { opacity: 0; visibility: hidden; }
+    #intro h1 {
+      font-family: Georgia, serif; font-size: clamp(32px, 9vw, 96px); margin: 0 16px; letter-spacing: .08em;
+      color: var(--gold); text-transform: uppercase; text-align: center;
+      animation: introIn 1.4s cubic-bezier(.16,1,.3,1) forwards; opacity: 0; transform: translateZ(-600px) scale(.6);
+    }
+    @keyframes introIn { to { opacity: 1; transform: translateZ(0) scale(1); } }
+
+    /* ---------- Hero with 3D ring ---------- */
+    .stage { perspective: 1400px; height: 100vh; height: 100svh; position: relative; }
+    .orbit {
+      position: absolute; top: 50%; left: 50%; width: 1px; height: 1px;
+      transform-style: preserve-3d;
+      animation: orbit 60s linear infinite;
+      transition: transform .3s ease-out;
+    }
+    @keyframes orbit { to { transform: rotateY(360deg); } }
+
+    .card {
+      position: absolute; width: min(72vw, 360px); padding: 22px; left: 0; top: 0;
+      background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.02));
+      border: 1px solid var(--line); border-radius: 18px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 0 30px rgba(245,215,122,.05);
+      transform: translate(-50%, -50%) rotateY(var(--r)) translateZ(var(--z));
+    }
+    .card h2 { margin: 0 0 8px; font-family: Georgia, serif; color: var(--gold); font-size: 22px; letter-spacing: .05em; }
+    .card p { margin: 0; font-size: 14px; line-height: 1.5; opacity: .85; }
+    .card .num { display: inline-block; margin-top: 12px; font-size: 12px; letter-spacing: .15em; color: var(--gold); }
+
+    .hero {
+      position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%);
+      text-align: center; pointer-events: none; z-index: 2; width: 90vw;
+      text-shadow: 0 2px 20px rgba(0,0,0,.8);
+    }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(34px, 8vw, 84px); margin: 0; color: #fff6dc; text-shadow: 0 0 25px rgba(245,215,122,.4); }
+    .hero p { color: var(--gold); letter-spacing: .4em; font-size: 13px; text-transform: uppercase; }
+
+    /* ---------- Scrolling content ---------- */
+    main { position: relative; z-index: 3; background: var(--ink); padding: 80px 6vw; margin-top: 100vh; }
+    main section { max-width: 1000px; margin: 0 auto 90px; }
+    main h2 { font-family: Georgia, serif; color: var(--gold); font-size: clamp(24px, 4vw, 40px); margin-bottom: 18px; }
+    main p, main li { font-size: clamp(14px, 2vw, 17px); line-height: 1.6; opacity: .9; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .tile {
+      background: var(--glass); border: 1px solid var(--line); border-radius: 16px; padding: 18px;
+      transform-style: preserve-3d; transition: transform .4s ease;
+    }
+    .tile h3 { margin: 10px 0 4px; font-family: Georgia, serif; color: var(--gold); font-size: 18px; }
+    .tile p { margin: 0; font-size: 14px; }
+    .tile:hover { transform: rotateX(6deg) rotateY(-8deg) translateZ(20px); }
+    .photo {
+      width: 100%; aspect-ratio: 4/3; border-radius: 12px; margin-bottom: 12px;
+      background: repeating-linear-gradient(45deg, #1a1408 0 10px, #241b0b 10px 20px);
+      display: flex; align-items: center; justify-content: center; color: #8a7a52; font-size: 13px;
+    }
+    .links a {
+      display: inline-flex; align-items: center; min-height: 44px; margin: 6px 8px 6px 0; padding: 10px 18px;
+      border: 1px solid var(--line); border-radius: 999px; color: #fff6dc; text-decoration: none; transition: background .3s;
+    }
+    .links a:hover, .links a:focus-visible { background: rgba(245,215,122,.15); }
+    footer { text-align: center; font-size: 12px; opacity: .5; padding: 30px 0; }
+
+    /* Phones: lighter motion so scrolling stays smooth */
+    @media (max-width: 640px) {
+      .card { width: 70vw; padding: 16px; }
+      .orbit { animation-duration: 90s; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .orbit, #intro h1 { animation: none; }
+      #intro { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="intro"><h1>Stella the Dog</h1></div>
+
+  <div class="stage" id="stage">
+    <div class="hero">
+      <p>Portfolio</p>
+      <h1>Stella the Dog</h1>
+      <p>Scroll Down</p>
+    </div>
+    <div class="orbit" id="orbit">
+      <div class="card" style="--r:0deg;   --z:420px"><h2>About</h2><p>Who Stella is, her breed, age and favourite things.</p><span class="num">01</span></div>
+      <div class="card" style="--r:60deg;  --z:420px"><h2>Achievements</h2><p>Awards, certificates and fun milestones.</p><span class="num">02</span></div>
+      <div class="card" style="--r:120deg; --z:420px"><h2>Favourites</h2><p>Her favourite treat, toy and nap spot.</p><span class="num">03</span></div>
+      <div class="card" style="--r:180deg; --z:420px"><h2>Future Plans</h2><p>Her next adventures and goals.</p><span class="num">04</span></div>
+      <div class="card" style="--r:240deg; --z:420px"><h2>Friends</h2><p>Her best friends and playmates.</p><span class="num">05</span></div>
+      <div class="card" style="--r:300deg; --z:420px"><h2>Contact</h2><p>Get in touch with Stella's family.</p><span class="num">06</span></div>
+    </div>
+  </div>
+
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p>Stella is a bright, playful dog who greets everyone like a long-lost friend. She loves morning walks, chasing the wind, and napping in the sun. Add her breed, age, and a short story about how she came home.</p>
+    </section>
+
+    <section id="achievements">
+      <h2>Achievements</h2>
+      <div class="grid">
+        <div class="tile"><div class="photo">Photo 1</div><h3>Achievement One</h3><p>Date and one line of detail.</p></div>
+        <div class="tile"><div class="photo">Photo 2</div><h3>Achievement Two</h3><p>Date and one line of detail.</p></div>
+        <div class="tile"><div class="photo">Photo 3</div><h3>Achievement Three</h3><p>Date and one line of detail.</p></div>
+      </div>
+    </section>
+
+    <section id="favourites">
+      <h2>Favourites</h2>
+      <div class="grid">
+        <div class="tile"><h3>Favourite Treat</h3><p>Fill in her favourite treat (safe for dogs).</p></div>
+        <div class="tile"><h3>Favourite Toy</h3><p>Fill in her favourite toy.</p></div>
+        <div class="tile"><h3>Favourite Spot</h3><p>Fill in where she loves to nap.</p></div>
+      </div>
+    </section>
+
+    <section id="future">
+      <h2>Future Plans</h2>
+      <ol>
+        <li>First goal (for example: a new park trip)</li>
+        <li>Second goal (for example: a training class)</li>
+        <li>Third goal (for example: a family holiday)</li>
+      </ol>
+    </section>
+
+    <section id="friends">
+      <h2>Friends</h2>
+      <div class="grid">
+        <div class="tile"><h3>Best Friend</h3><p>Name of the pet or person she loves most.</p></div>
+        <div class="tile"><h3>Playmate</h3><p>Name of her favourite playmate.</p></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="links">
+        <a href="mailto:email@example.com">Email</a>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer">Website</a>
+      </div>
+    </section>
+
+    <footer>© Stella the Dog</footer>
+  </main>
+
+  <script>
+    // Hide the intro after its animation
+    setTimeout(function () { document.getElementById("intro").classList.add("hide"); }, 2600);
+
+    // Tilt the 3D ring with the mouse (desktop only)
+    var stage = document.getElementById("stage");
+    var orbit = document.getElementById("orbit");
+    if (window.matchMedia("(hover: hover)").matches) {
+      stage.addEventListener("mousemove", function (e) {
+        var x = (e.clientX / window.innerWidth - .5) * 20;
+        var y = (e.clientY / window.innerHeight - .5) * -20;
+        orbit.style.transform = "rotateX(" + y + "deg) rotateY(" + x + "deg)";
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>

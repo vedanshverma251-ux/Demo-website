@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self' mailto:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Portfolio of Stella the Dog">
+  <title>Stella the Dog | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="intro" aria-hidden="true"><h1>Stella the Dog</h1></div>
+
+  <header class="nav">
+    <span class="logo">S</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#achievements">Awards</a>
+      <a href="#favourites">Favourites</a>
+      <a href="#plans">Plans</a>
+      <a href="#friends">Friends</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero: 3D ring that rotates with scroll -->
+  <section class="hero" id="top">
+    <div class="scene">
+      <div class="ring" id="ring">
+        <div class="ring-card" style="--r:0deg"><span>01</span><h3>About</h3></div>
+        <div class="ring-card" style="--r:60deg"><span>02</span><h3>Awards</h3></div>
+        <div class="ring-card" style="--r:120deg"><span>03</span><h3>Favourites</h3></div>
+        <div class="ring-card" style="--r:180deg"><span>04</span><h3>Plans</h3></div>
+        <div class="ring-card" style="--r:240deg"><span>05</span><h3>Friends</h3></div>
+        <div class="ring-card" style="--r:300deg"><span>06</span><h3>Contact</h3></div>
+      </div>
+    </div>
+    <div class="hero-text">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Stella the Dog</h1>
+      <p class="tagline">Loyal, playful, and the best company in the house</p>
+      <p class="scroll-hint">Scroll</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="panel" id="about">
+      <div class="panel-inner">
+        <h2>About</h2>
+        <p>Stella is a bright, playful dog who greets everyone like a long-lost friend. She loves morning walks, chasing the wind, and napping in the sun. Add her breed, age, and a short story about how she came home.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="achievements">
+      <div class="panel-inner">
+        <h2>Achievements</h2>
+        <div class="grid">
+          <article class="tile"><div class="photo">Photo 1</div><h3>Achievement One</h3><p>Date and one line of detail.</p></article>
+          <article class="tile"><div class="photo">Photo 2</div><h3>Achievement Two</h3><p>Date and one line of detail.</p></article>
+          <article class="tile"><div class="photo">Photo 3</div><h3>Achievement Three</h3><p>Date and one line of detail.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="favourites">
+      <div class="panel-inner">
+        <h2>Favourites</h2>
+        <div class="grid">
+          <article class="tile"><h3>Favourite Treat</h3><p>Fill in her favourite treat (safe for dogs).</p></article>
+          <article class="tile"><h3>Favourite Toy</h3><p>Fill in her favourite toy.</p></article>
+          <article class="tile"><h3>Favourite Spot</h3><p>Fill in where she loves to nap.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="plans">
+      <div class="panel-inner">
+        <h2>Future Plans</h2>
+        <ol class="plans">
+          <li>First goal (for example: a new park trip)</li>
+          <li>Second goal (for example: training class)</li>
+          <li>Third goal (for example: a family holiday)</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="panel" id="friends">
+      <div class="panel-inner">
+        <h2>Friends</h2>
+        <div class="grid">
+          <article class="tile"><h3>Best Friend</h3><p>Name of the pet or person she loves most.</p></article>
+          <article class="tile"><h3>Playmate</h3><p>Name of her favourite playmate.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="contact">
+      <div class="panel-inner">
+        <h2>Contact</h2>
+        <div class="links">
+          <a href="mailto:email@example.com">Email</a>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer">Website</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>© Stella the Dog</footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
